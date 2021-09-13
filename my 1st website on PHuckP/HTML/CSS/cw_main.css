@@ -1,0 +1,142 @@
+#submit,#reset {
+    background-color: #555555; /* Green */
+    border-radius: 4px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#submit:hover  {
+    background-color: #bdbdbd; /* Green */
+    color: black;
+}
+
+#reset:hover  {
+    background-color: mediumseagreen; /* Green */
+    color: black;
+}
+
+/*.table, td, tr {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}*/
+
+h2 {
+    border-bottom: 6px solid mediumseagreen;
+    background-color: #bdbdbd;
+    /*border-top-right-radius: 16px;
+    border-top-left-radius: 4px;*/
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    color: black;
+}
+
+#padding {
+    height: 100px;
+    width: 100%;
+    background-color: mediumseagreen;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+.bottomright {
+  /*background-color: mediumseagreen;*/
+  display: block;
+  text-align: center;
+  bottom: 10px;
+  right: 16px;
+  font-size: 14px;
+}
+
+form{
+/*    border-bottom: 16px solid mediumseagreen; */
+    border-radius: 5px;
+}
+
+.catalog, .reports, .queries, .editing {
+  width: 40%;
+}
+
+#tooltp{
+    color: grey;
+}
+
+a {
+    text-decoration: none;
+}
+
+#login {
+    /*-webkit-transition-duration: 0.4s; /* Safari */
+    /*transition-duration: 0.4s;
+    border: 2px solid #bdbdbd;
+    background-color: #baccc6;*/
+    border: 2px solid #555555;
+    border-radius: 4px;
+    background-color: #d9d9d9;
+   }
+
+/*#login:focus {
+    border: 3px solid mediumseagreen;
+   }*/
+
+
+
+/**
+ * Footer Styles
+ */
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+  background-color: #baccc6;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex: 0 0 auto;
+  height: 80px;
+  background-color: mediumseagreen;
+  text-align: bottom;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+}
+
+#hideborder {
+  border: none;
+}
+
+#td-td {
+    padding: 10px;
+}
+#edit-table {
+  border-collapse: collapse;
+   width: 100%;
+}
+#edit-tr:hover {
+  background-color:#f5f5f5;
+}
+
+th{
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+/*  <link href="cw_main.css" rel="stylesheet">*/

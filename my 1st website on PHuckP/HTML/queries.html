@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="HTML/CSS/cw_main.css" rel="stylesheet">
+	<meta charset="uft-8">
+	<script type=text/javascript src="window.js"></script>
+	<title>Шаблон запросов</title>
+</head>
+
+	<body>
+		<h2 align=center>Список запросов</h2>
+		<a href="?exit" method="GET" id=reset class="btn"> Выход из системы </a>
+		<br>
+
+		<br>
+		<div align=l eft>
+			<div class="button_stack">
+				<!--<a href="http://localhost/cw_redurect.php?key='1'"></a>-->
+				<form action="http://localhost/dz/query_out1.php" method="post">
+					1. Вывести отчет о покупках по форме за указанный месяц:
+					<table style="width:25%">
+						<tr>
+							<th>Название покупателя</th>
+							<th>Название детали</th>
+							<th>Количество</th>
+							<th>Общая стоймость</th>
+						</tr>
+					</table>
+					<br>
+					<input type="text" name="month" placeholder="месяц">
+					<input type="text" name="year" placeholder="год">
+					<input type="hidden" name="key" value="1"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<input type="reset" value="Очистить" id="reset">
+					<br>
+				</form>
+				<form action="http://localhost/dz/query_out2.php" method="post">
+					2. Показать детали, которые ни разу не продавались в указанном месяце:
+					<input type="text" name="month" placeholder="месяц">
+					<input type="text" name="year" placeholder="год">
+					<input type="hidden" name="key" value="2"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<input type="reset" value="Очистить" id="reset">
+					<br>
+				</form>
+				<form action="http://localhost/dz/query_out3.php" method="post">
+					3. Показать все сведения о покупателе, который заключил контракт самым последним:
+					<input type="hidden" name="key" value="3"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<br>
+				</form>
+				<form action="http://localhost/dz/query_out4.php" method="post">
+					4. Показать все сведения о детали, которая чаще всего покупалась в марте 2016г:
+					<input type="hidden" name="key" value="4"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<br>
+				</form>
+				<form action="http://localhost/dz/query_out5.php" method="post">
+					5. Найти день, когда было продано максимальное количество деталей<input type="text" name="dname" placeholder="Название детали">
+					<input type="hidden" name="key" value="5"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<input type="reset" value="Очистить" id="reset">
+					<br>
+				</form>
+					<form action="http://localhost/dz/query_out6.php" method="post">
+					6. Показать название и количество проданных деталей покупателю <input type="text" name="customer" placeholder="Имя попупателя"> в этом году:
+					<input type="hidden" name="key" value="6"> <br>
+					<input type="submit" value="Отправить" id="submit">
+					<input type="reset" value="Очистить" id="reset">
+					<br>
+				</form>
+			</div>
+
+			<br><br><br>
+			<h4 align=center id="tooltp">Выберите необходимый пункт, введите данные при необходимости, и нажмите отправить*</h4>
+
+		</div>
+		<div id=padding>
+			<br><br><br><br>
+			<div class="bottomright">2017 Еремин А.А.</div>
+		</div>
+
+</body>
+</html>
