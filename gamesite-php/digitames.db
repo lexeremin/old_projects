@@ -1,0 +1,225 @@
+-- MySQL dump 10.13  Distrib 5.7.19, for Linux (i686)
+--
+-- Host: localhost    Database: digitames
+-- ------------------------------------------------------
+-- Server version	5.7.19-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `game_projects`
+--
+
+DROP TABLE IF EXISTS `game_projects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `game_projects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `proj_name` varchar(64) NOT NULL,
+  `proj_url` varchar(64) NOT NULL,
+  `proj_img` varchar(32) NOT NULL,
+  `proj_desc` varchar(255) DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_projects`
+--
+
+LOCK TABLES `game_projects` WRITE;
+/*!40000 ALTER TABLE `game_projects` DISABLE KEYS */;
+INSERT INTO `game_projects` (`id`, `proj_name`, `proj_url`, `proj_img`, `proj_desc`, `is_featured`) VALUES (1,'Bloodborne','#','./img/featured/bloodborne.jpg',NULL,1),(2,'GTA V','#','./img/featured/gta5.jpg',NULL,1),(3,'Need for speed: Underground 2','#','./img/featured/NFSU2.jpg',NULL,1),(4,'Watch Dogs 2','#','./img/featured/watchdogs2.jpg',NULL,1),(5,'Super Mario Run','#','./img/tableview/mariorun.jpg',NULL,0),(6,'Assasin\'s creed: Unity','#','./img/tableview/assasins.jpg',NULL,0),(7,'Call of duty: MW2','#','./img/tableview/callofduty.jpg',NULL,0),(8,'Stronghold: Crusader 2','#','./img/tableview/stronghold.jpg',NULL,0),(9,'Wolfenstein: the new order','#','./img/tableview/wolfenstein.jpg',NULL,0);
+/*!40000 ALTER TABLE `game_projects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `leaderboard_global`
+--
+
+DROP TABLE IF EXISTS `leaderboard_global`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `leaderboard_global` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `proj_id` int(11) unsigned NOT NULL,
+  `scores` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `LEADERBOARD_GLOBAL_FK_1` (`usr_id`),
+  KEY `LEADERBOARD_GLOBAL_FK_2` (`proj_id`),
+  CONSTRAINT `leaderboard_global_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `leaderboard_global_ibfk_2` FOREIGN KEY (`proj_id`) REFERENCES `game_projects` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `leaderboard_global`
+--
+
+LOCK TABLES `leaderboard_global` WRITE;
+/*!40000 ALTER TABLE `leaderboard_global` DISABLE KEYS */;
+INSERT INTO `leaderboard_global` (`id`, `usr_id`, `proj_id`, `scores`) VALUES (1,2,1,0),(2,2,2,0),(3,2,3,0),(4,2,4,0),(5,3,6,0),(6,3,4,0),(7,3,1,0);
+/*!40000 ALTER TABLE `leaderboard_global` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `subscribes`
+--
+
+DROP TABLE IF EXISTS `subscribes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subscribes` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `proj_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subscribesFK1` (`usr_id`),
+  KEY `subscribesFK2` (`proj_id`),
+  CONSTRAINT `subscribesFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `subscribesFK2` FOREIGN KEY (`proj_id`) REFERENCES `game_projects` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `subscribes`
+--
+
+LOCK TABLES `subscribes` WRITE;
+/*!40000 ALTER TABLE `subscribes` DISABLE KEYS */;
+INSERT INTO `subscribes` (`id`, `usr_id`, `proj_id`) VALUES (1,2,1),(2,2,2),(3,2,3),(4,2,4),(5,3,6),(6,3,4),(7,3,1);
+/*!40000 ALTER TABLE `subscribes` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`alexis`@`localhost`*/ /*!50003 trigger `set_default_scores` after insert on `subscribes` for each row begin insert into `leaderboard_global` (usr_id, proj_id) values (NEW.usr_id, NEW.proj_id); end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `user_data`
+--
+
+DROP TABLE IF EXISTS `user_data`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_data` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `nickname` varchar(20) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userDataFK1` (`usr_id`),
+  CONSTRAINT `userDataFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_data`
+--
+
+LOCK TABLES `user_data` WRITE;
+/*!40000 ALTER TABLE `user_data` DISABLE KEYS */;
+INSERT INTO `user_data` (`id`, `usr_id`, `nickname`, `birthday`, `session_id`) VALUES (1,2,'shutalker',NULL,'$2y$10$0gBl9dvF0vBLK00gfvmeX.Lg6KqBIh9quyZyyh/fArmCm9Oksssyi'),(2,3,'alexis',NULL,'$2y$10$SelSuDs9Y6BN87qf67zTpeGxFgTtEuZq5e/HOVsr/gaTXlF7fu9ZC'),(3,4,'qwert',NULL,'$2y$10$38A9pqVL.gM.Vn2oYwAa9.WfbEYiQQNAhPjaJVM4Y8uTsIb1E0TO2');
+/*!40000 ALTER TABLE `user_data` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_role` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `role` varchar(12) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userRoleFK1` (`usr_id`),
+  CONSTRAINT `userRoleFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_role`
+--
+
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+INSERT INTO `user_role` (`id`, `usr_id`, `role`) VALUES (2,2,'subscriber'),(3,3,'subscriber'),(4,4,'subscriber');
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(80) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `email`, `pwd`) VALUES (2,'testuser@test.ru','$2y$10$CE/mteJ6EjL8H0eLVjM3eethGgIuVRXcb3fI98gVopyGZfC3alQ3W'),(3,'a-shatunov@mail.ru','$2y$10$EZ5PBgxKfB/h.zdM3BXBoO3jw2rdRbSRqr3ZM4HQlaW3mDlH0by/q'),(4,'testuser1@test.com','$2y$10$3.y2t589kXnm0YSEoXBVte6nH9H3NhNdp.edyeE8Z4HLACBSkpCIu');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`alexis`@`localhost`*/ /*!50003 TRIGGER `set_subscriber_role` AFTER INSERT ON `users` FOR EACH ROW BEGIN INSERT INTO `user_role` SET usr_id=NEW.id, role='subscriber'; END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-12-18 23:49:54

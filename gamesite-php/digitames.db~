@@ -1,0 +1,85 @@
+DROP TABLE IF EXISTS `game_projects`;
+
+CREATE TABLE `game_projects` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `proj_name` varchar(64) NOT NULL,
+  `proj_url` varchar(64) NOT NULL,
+  `proj_img` varchar(32) NOT NULL,
+  `proj_desc` varchar(255) DEFAULT NULL,
+  `is_featured` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `leaderboard_global`;
+
+CREATE TABLE `leaderboard_global` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `proj_id` int(11) unsigned NOT NULL,
+  `scores` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `LEADERBOARD_GLOBAL_FK_1` (`usr_id`),
+  KEY `LEADERBOARD_GLOBAL_FK_2` (`proj_id`),
+  CONSTRAINT `leaderboard_global_ibfk_1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `leaderboard_global_ibfk_2` FOREIGN KEY (`proj_id`) REFERENCES `game_projects` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `subscribes`;
+
+CREATE TABLE `subscribes` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `proj_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `subscribesFK1` (`usr_id`),
+  KEY `subscribesFK2` (`proj_id`),
+  CONSTRAINT `subscribesFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `subscribesFK2` FOREIGN KEY (`proj_id`) REFERENCES `game_projects` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+DELIMITER ;;
+CREATE trigger `set_default_scores` after insert on `subscribes` for each row begin 
+  insert into `leaderboard_global` (usr_id, proj_id) values (NEW.usr_id,      NEW.proj_id); 
+end;;
+DELIMITER ;
+
+DROP TABLE IF EXISTS `user_data`;
+
+CREATE TABLE `user_data` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `nickname` varchar(20) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userDataFK1` (`usr_id`),
+  CONSTRAINT `userDataFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `user_role`;
+
+CREATE TABLE `user_role` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `usr_id` int(11) unsigned NOT NULL,
+  `role` varchar(12) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `userRoleFK1` (`usr_id`),
+  CONSTRAINT `userRoleFK1` FOREIGN KEY (`usr_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(80) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+DELIMITER ;;
+CREATE TRIGGER `set_subscriber_role` AFTER INSERT ON `users` FOR EACH ROW
+BEGIN 
+  INSERT INTO `user_role` SET usr_id=NEW.id, role='subscriber';
+END;;
+DELIMITER ;
+

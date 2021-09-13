@@ -1,0 +1,156 @@
+body {
+  background-color: #303036;
+  color: lightsteelblue !important;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+}
+
+hr {
+  border-color: transparent;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.table-hover tbody tr:hover td {
+  background-color: #4c4c56;
+}
+
+.table tbody td, .table thead th {
+  border-color: #4c4c56 !important;
+}
+
+.rfloat {
+  float: right !important;
+}
+
+.account-dropdown {
+  float: right;
+}
+
+/*HEADER BLOCK*/
+
+.container.custom-width {
+  width: 100% !important;
+  max-height: 48px;
+  background-color: linear-gradient(to bottom, #000, rgba(0, 0, 0, 0.0));
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.container.custom-width > .row {
+  padding: 5px 0;
+}
+
+.dropdown > .btn-custom-dropdown {
+  color: whitesmoke;
+  font-size: 12pt;
+}
+
+.dropdown > .btn-custom-dropdown:hover {
+  text-decoration: none !important;
+}
+
+.dropdown-menu.custom-login {
+  background-color: rgba(48, 48, 54, 0.9);
+  color: whitesmoke; 
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.dropdown-menu.custom-login > li > a {
+  color: whitesmoke;
+}
+
+.container.login-form {
+  width: 250px;
+}
+
+.container.login-form input {
+  color: whitesmoke;
+  background-color: #51515b;
+  border-color: #303036;
+}
+
+.container.login-form .btn-login {
+  width: 80px;
+  height: 40px;
+  color: whitesmoke;
+  background-color: #1d1d21;
+  border: none;
+}
+
+.container.login-form .btn-login:hover {
+  transition: box-shadow 0.5s ease;
+  box-shadow: 0 0 10px rgba(222, 249, 245, 0.5);
+}
+
+/*END HEADER BLOCK*/
+
+/*MAIN BLOCK*/
+
+/*FEATURED PROJECTS SECTION*/
+.main {
+  padding-bottom: 10px;
+}
+
+.featured-projects {
+  position: relative;
+  top: 0;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* Параметры тени */
+}
+
+.featured-projects .container-fluid {
+  padding: 0;
+}
+
+#featuredProjectsCarousel {
+  width: 100%;
+  min-height: 340px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+/*END FEATURED PROJECTS SECTION*/
+
+/*TABLE VIEW SECTION*/
+.table-view {
+  padding: 20px 0;
+}
+
+.table-view .col-xs-6,
+.table-view .col-sm-6,
+.table-view .col-md-3,
+.table-view .col-lg-3 {
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+
+.filler {
+  display: block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  height: 200px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.filler > .btn-add-to-favorite {
+  background-color: #006639;
+  color: whitesmoke;
+  border: 0;
+  border-radius: 0;
+  width: 70%;
+  height: 50px;
+  position: relative;
+  top: 150px;
+  right: 100%;
+}
+/*END TABLE VIEW SECTION*/
+
+/*ACCOUNT SECTION*/
+.main.account {
+  margin-top: 48px;
+}
+/*END ACCOUNT SECTION/

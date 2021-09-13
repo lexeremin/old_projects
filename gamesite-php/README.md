@@ -1,0 +1,2 @@
+Internship template website made for PC card game list with affiliate links and addition info about games with adjustable content via DIY CMS(not completed)
+If you know Russian check readme.pdf for deployment info
